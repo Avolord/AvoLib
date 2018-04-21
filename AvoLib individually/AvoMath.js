@@ -5,13 +5,6 @@ let sum = Arr.map(x => x*x);
     return Math.sqrt(sum)
 }
 
-static Pythag2(Arr) {
-  let sum = 0;
-  for(let i=0,n=Arr.length;i<n;i++) {
-    sum+=Arr[i]*Arr[i];
-  }
-  return Math.sqrt(sum)
-}
 
 static radians  (a) {return a*(Math.PI/180)};
 
