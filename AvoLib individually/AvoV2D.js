@@ -1,11 +1,17 @@
+const v2d_initialized = true;
+
 class V2D {
   constructor(x,y) {
     this.x = x || 0;
     this.y = y || 0;
   }
 
+  static randomInt (min, max) {
+    return Math.floor(min + Math.random() * (max + 1 - min));
+  }
+
   value() {
-    return AM.Pythag([this.x,this.y]);
+    return Math.Pythag([this.x,this.y]);
   }
 
   valueSq() {
@@ -32,21 +38,21 @@ class V2D {
     return new V2D(this.x,-this.y);
   }
 
-  mix(V2, amount) {
-    return this.add(V2.sub(this).mult(amount || 1));
+  mix(V2, Mathount) {
+    return this.add(V2.sub(this).mult(Mathount || 1));
   }
 
-  mixX(V2, amount) {
-    return new V2D(this.x+(V2.x-this.x)*(amount || 1),this.y);
+  mixX(V2, Mathount) {
+    return new V2D(this.x+(V2.x-this.x)*(Mathount || 1),this.y);
   }
 
-  mixY(V2, amount) {
-    return new V2D(this.x,this.y+(V2.y-this.y)*(amount || 1));
+  mixY(V2, Mathount) {
+    return new V2D(this.x,this.y+(V2.y-this.y)*(Mathount || 1));
   }
 
-  limit(value, amount) {
-    const x = (this.x>value) ? this.x*amount : this.x;
-    const y = (this.y>value) ? this.y*amount : this.y;
+  limit(value, Mathount) {
+    const x = (this.x>value) ? this.x*Mathount : this.x;
+    const y = (this.y>value) ? this.y*Mathount : this.y;
     return new V2D(x,y);
   }
 
@@ -160,7 +166,7 @@ class V2D {
   }
 
   Vangle(V2) {
-    return AM.radians( AM.acos( this.dotP(V2) / ( this.value() * V2.value() )));
+    return Math.acos( this.dotP(V2) / ( this.value() * V2.value() ));
   }
 
   dist(V2) {
@@ -233,15 +239,15 @@ class V2D {
   }
 
   randomize(topLeft, bottomRight) {
-    return new V2D(AM.RandInt(topLeft.x,bottomRight.x-topLeft.x),AM.RandInt(topLeft.y,bottomRight.y-topLeft.y))
+    return new V2D(V2D.randomInt(topLeft.x,bottomRight.x-topLeft.x),V2D.randomInt(topLeft.y,bottomRight.y-topLeft.y))
   }
 
   randomizeX(topLeft, bottomRight) {
-    return new V2D(this.x,AM.RandInt(topLeft.y,bottomRight.y-topLeft.y))
+    return new V2D(this.x,V2D.randomInt(topLeft.y,bottomRight.y-topLeft.y))
   }
 
   randomizeY(topLeft, bottomRight) {
-    return new V2D(AM.RandInt(topLeft.x,bottomRight.x-topLeft.x),this.y)
+    return new V2D(V2D.randomInt(topLeft.x,bottomRight.x-topLeft.x),this.y)
   }
 
   Rectangle(Corner2,color,style) {
@@ -279,11 +285,11 @@ class V2D {
   }
 
   rotate(angle,length) {
-    return new V2D(AM.cos(angle)*(length || 100),AM.sin(angle)*(length || 100));
+    return new V2D(Math.cos(angle)*(length || 100),Math.sin(angle)*(length || 100));
   }
 
   rotateAround(V2,angle,length) {
-    return new V2D(AM.cos(angle)*(length || 100)+V2.x,AM.sin(angle)*(length || 100)+V2.y);
+    return new V2D(Math.cos(angle)*(length || 100)+V2.x,Math.sin(angle)*(length || 100)+V2.y);
   }
 
   SCHNITT(P1,P2,P3) {
@@ -303,7 +309,7 @@ class V2D {
 class randVec2D extends V2D {
   constructor(topLeft, bottomRight) {
     super();
-    this.x = AM.RandInt(topLeft.x,bottomRight.x-topLeft.x);
-    this.y = AM.RandInt(topLeft.y,bottomRight.y-topLeft.y);
+    this.x = V2D.randomInt(topLeft.x,bottomRight.x-topLeft.x);
+    this.y = V2D.randomInt(topLeft.y,bottomRight.y-topLeft.y);
   }
 }

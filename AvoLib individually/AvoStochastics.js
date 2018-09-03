@@ -1,3 +1,9 @@
+const avostochastics_initialized = true;
+
+if(!avodraw_initialized) {
+  throw new Error("AvoDraw.js is missing!");
+}
+
 class Stochastics {
   constructor(InputArray) {
     this.values = Sort.Bubble(InputArray);
